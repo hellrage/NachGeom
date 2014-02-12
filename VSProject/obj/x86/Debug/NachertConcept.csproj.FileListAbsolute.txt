@@ -1,0 +1,10 @@
+n:\documents\hellrage\my documents\visual studio 2010\Projects\NachertConcept\NachertConcept\bin\Debug\NachertConcept.exe
+n:\documents\hellrage\my documents\visual studio 2010\Projects\NachertConcept\NachertConcept\bin\Debug\NachertConcept.pdb
+n:\documents\hellrage\my documents\visual studio 2010\Projects\NachertConcept\NachertConcept\obj\x86\Debug\NachertConcept.csprojResolveAssemblyReference.cache
+n:\documents\hellrage\my documents\visual studio 2010\Projects\NachertConcept\NachertConcept\obj\x86\Debug\NachertConcept.Form1.resources
+n:\documents\hellrage\my documents\visual studio 2010\Projects\NachertConcept\NachertConcept\obj\x86\Debug\NachertConcept.Properties.Resources.resources
+n:\documents\hellrage\my documents\visual studio 2010\Projects\NachertConcept\NachertConcept\obj\x86\Debug\NachertConcept.csproj.GenerateResource.Cache
+n:\documents\hellrage\my documents\visual studio 2010\Projects\NachertConcept\NachertConcept\obj\x86\Debug\NachertConcept.exe
+n:\documents\hellrage\my documents\visual studio 2010\Projects\NachertConcept\NachertConcept\obj\x86\Debug\NachertConcept.pdb
+N:\Каталоги\Git\NachGeom\VSProject\obj\x86\Debug\NachertConcept.exe
+N:\Каталоги\Git\NachGeom\VSProject\obj\x86\Debug\NachertConcept.pdb

@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1
         int questionNum = 1;
         Testsheet test;
         List<Question> questionData = new List<Question>();
+        List<RadioButton> RadioButtonList;
        
         /*
         int i;
@@ -112,7 +113,7 @@ namespace WindowsFormsApplication1
 
 
             //Method, creating list of  RadioButtons
-            List<RadioButton> RadioButtonList = new List<RadioButton>();
+            RadioButtonList = new List<RadioButton>();
             RadioButtonList.Add(radioButton1);
             RadioButtonList.Add(radioButton2);
             RadioButtonList.Add(radioButton3);
@@ -121,54 +122,67 @@ namespace WindowsFormsApplication1
 
         }
 
+
+        void UpdatingForm()
+        {
+            label1.Text = questionNum.ToString();
+            groupBox1.Text = test.questions[questionNum - 1].questionText;
+            int i = 0;
+            foreach (KeyValuePair<string, bool> s in test.questions[questionNum - 1].answers)
+            {
+                RadioButtonList[i].Text = s.Key;
+                i++;
+            }
+            //picture
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            if (questionNum == 5)
+            if (questionNum == 4)
             { 
                 button2.Enabled = false; 
             }
-            else 
-            { 
-                button1.Enabled = true;
-                questionNum++; 
+
+            if (questionNum != 5)
+            {
+                questionNum++;
             }
 
+            button1.Enabled = true;
+
+            //Method of updating results;
+
+
             //Method of updating form;
-            groupBox1.Text = objQuestion[questionNum].Question;
-            radioButton1.Text = rad1[questionNum];
-            radioButton2.Text = rad2[questionNum];
-            radioButton3.Text = rad3[questionNum];
-            radioButton4.Text = rad4[questionNum];
-            radioButton5.Text = rad5[questionNum];
+            UpdatingForm();
+
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (questionNum == 1)
+            if (questionNum == 2)
             {
-                button2.Enabled = false;
+                button1.Enabled = false;
             }
-            else
+            
+            if(questionNum != 1)
             {
-                button1.Enabled = true;
-                questionNum--;
+             questionNum--;
             }
 
+            button2.Enabled = true;
+
             //Method of updating form;
-            groupBox1.Text = objQuestion[questionNum].Question;
-            radioButton1.Text = rad1[questionNum];
-            radioButton2.Text = rad2[questionNum];
-            radioButton3.Text = rad3[questionNum];
-            radioButton4.Text = rad4[questionNum];
-            radioButton5.Text = rad5[questionNum];
+            UpdatingForm();
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if(sender.checked)
-            {
+           // if(sender.checked)
+           // {
                 
-            }
+           // }
         }
     }
 }

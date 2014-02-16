@@ -17,9 +17,7 @@ namespace WindowsFormsApplication1
         List<Question> questionData = new List<Question>();
         List<RadioButton> RadioButtonList;
         List<RadioButton> RadioButtonListCash;
-
-
-       
+               
         /*
         int i;
         string[] rad1 = {"1", "Главный вид", "Фронтальный разрез", "Наложенное сечение"};
@@ -34,7 +32,6 @@ namespace WindowsFormsApplication1
         int[] answ = { 3, 1, 2, 5, 4 };
         */
         
-        
         public Form1()
         {
             InitializeComponent();
@@ -45,11 +42,7 @@ namespace WindowsFormsApplication1
             //List of Questions
 
             for (int i = 0; i < 5; i++)
-		    {
 			    questionData.Add(new Question());
-		    }
-
-            
 
             //Метод, заполняющий список данными из базы
 
@@ -59,8 +52,8 @@ namespace WindowsFormsApplication1
             questionData[0].questionText = "Какое изображение называется видом?";
             //Variants
             questionData[0].answers.Add("Изображение фигуры, получающейся при мысленном рассечении предмета одной или несколькими плоскостями с показом того, что получается в секущей плоскости", false);
-            questionData[0].answers.Add("Изображение обращенной к наблюдателю видимой части поверхности предмета", false);
-            questionData[0].answers.Add("Изображение предмета, мысленно рассеченного одной или несколькими плоскостями с показом того, что получается в секущей плоскости и что расположено за ней", true);
+            questionData[0].answers.Add("Изображение обращенной к наблюдателю видимой части поверхности предмета", true);
+            questionData[0].answers.Add("Изображение предмета, мысленно рассеченного одной или несколькими плоскостями с показом того, что получается в секущей плоскости и что расположено за ней", false);
             questionData[0].answers.Add("Дополнительное отдельное изображение какой-либо части предмета, требующей графического и других поясненй в отношении формы, размеров и других данных", false);
             questionData[0].answers.Add("Разрез, служащий для выяснения устройства предмета лишь в отдельном, ограниченном месте", false);
 
@@ -115,7 +108,6 @@ namespace WindowsFormsApplication1
 
             test.FillQuestions(questionData);
 
-
             //Method, creating list of  RadioButtons
             RadioButtonList = new List<RadioButton>();
             RadioButtonList.Add(radioButton1);
@@ -123,52 +115,68 @@ namespace WindowsFormsApplication1
             RadioButtonList.Add(radioButton3);
             RadioButtonList.Add(radioButton4);
             RadioButtonList.Add(radioButton5);
-
-
+            
             UpdatingForm();
         }
 
         void AnalisationOfAnswer()
         {
+            int i = 1;
             foreach (RadioButton r in RadioButtonList)
             {
+                
                 if (r.Checked)
+                {
                     test.UpdateResults(questionNum, test.questions[questionNum - 1].answers[r.Text]);
-
-
+                    test.chosenAnswers[questionNum] = i;
+                }
+                i++;
             }
         }
         
         
         void UpdatingForm()
         {
-
-            int j;
+          
             RadioButtonListCash = new List<RadioButton>();
             RadioButtonListCash.Add(radioButton1);
             RadioButtonListCash.Add(radioButton2);
             RadioButtonListCash.Add(radioButton3);
             RadioButtonListCash.Add(radioButton4);
             RadioButtonListCash.Add(radioButton5);
-            Random rnd = new Random();
-
-
-          
+          //  Random rnd = new Random();
+                                  
             groupBox1.Text = test.questions[questionNum - 1].questionText;
-            foreach (KeyValuePair<string, bool> s in test.questions[questionNum - 1].answers)
+            
+            //Cheking
+            if (test.chosenAnswers[questionNum] == 0)
             {
-                j = rnd.Next(RadioButtonListCash.Count);
-                RadioButtonListCash[j].Text = s.Key;
-                RadioButtonListCash.RemoveAt(j);
+                foreach (RadioButton r in RadioButtonList)
+                    r.Checked = false;
             }
-
-            label1.Text = "";
-            for (int i = 1; i <= 5; i++)
-            {
-                label1.Text += test.results[i].ToString();
-            }
+            else
+                RadioButtonList[test.chosenAnswers[questionNum] - 1].Checked = true;
 
             
+            //Filling with text
+            int j = 0;
+            foreach (KeyValuePair<string, bool> s in test.questions[questionNum - 1].answers)
+            {
+              //  j = rnd.Next(RadioButtonListCash.Count);
+                RadioButtonListCash[j].Text = s.Key;
+                j++;
+              //  RadioButtonListCash.RemoveAt(j);
+            }
+
+
+            //debugging
+            label1.Text = "";
+            for (int i = 1; i <= 5; i++)
+                label1.Text += test.results[i].ToString();
+            label2.Text = "";
+            for (int i = 1; i <= 5; i++)
+                label2.Text += test.chosenAnswers[i].ToString();
+
 
             //picture
         }
@@ -176,46 +184,30 @@ namespace WindowsFormsApplication1
         private void button2_Click(object sender, EventArgs e)
         {
             AnalisationOfAnswer();
-
-
-
-            
+                        
             if (questionNum == 4)
-            { 
                 button2.Enabled = false; 
-            }
 
             if (questionNum != 5)
-            {
                 questionNum++;
-            }
 
             button1.Enabled = true;
-
-
-
+                        
             UpdatingForm();
-
-           
-        }
+         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             AnalisationOfAnswer();
             
             if (questionNum == 2)
-            {
                 button1.Enabled = false;
-            }
             
             if(questionNum != 1)
-            {
-             questionNum--;
-            }
-
+                questionNum--;
+            
             button2.Enabled = true;
-
-
+            
             UpdatingForm();
         }
 

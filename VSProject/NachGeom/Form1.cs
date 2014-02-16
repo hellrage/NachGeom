@@ -35,6 +35,7 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             button1.Enabled = false;
+            dataGridView1.DataSource = MySQLQuieries.GetTest("Test1",1);
 
             test = new Testsheet("Name234", 1);
 
@@ -60,59 +61,59 @@ namespace WindowsFormsApplication1
 
 
             //1
-            questionData[0].questionText = "Какое изображение называется видом?";
-            //Variants
-            questionData[0].answers.Add("Изображение фигуры, получающейся при мысленном рассечении предмета одной или несколькими плоскостями с показом того, что получается в секущей плоскости", false);
-            objQuestion1.dicAnswers.Add("Изображение обращенной к наблюдателю видимой части поверхности предмета", false);
-            objQuestion1.dicAnswers.Add("Изображение предмета, мысленно рассеченного одной или несколькими плоскостями с показом того, что получается в секущей плоскости и что расположено за ней", true);
-            objQuestion1.dicAnswers.Add("Дополнительное отдельное изображение какой-либо части предмета, требующей графического и других поясненй в отношении формы, размеров и других данных", false);
-            objQuestion1.dicAnswers.Add("Разрез, служащий для выяснения устройства предмета лишь в отдельном, ограниченном месте", false);
+            //questionData[0].questionText = "Какое изображение называется видом?";
+            ////Variants
+            //questionData[0].answers.Add("Изображение фигуры, получающейся при мысленном рассечении предмета одной или несколькими плоскостями с показом того, что получается в секущей плоскости", false);
+            //objQuestion1.dicAnswers.Add("Изображение обращенной к наблюдателю видимой части поверхности предмета", false);
+            //objQuestion1.dicAnswers.Add("Изображение предмета, мысленно рассеченного одной или несколькими плоскостями с показом того, что получается в секущей плоскости и что расположено за ней", true);
+            //objQuestion1.dicAnswers.Add("Дополнительное отдельное изображение какой-либо части предмета, требующей графического и других поясненй в отношении формы, размеров и других данных", false);
+            //objQuestion1.dicAnswers.Add("Разрез, служащий для выяснения устройства предмета лишь в отдельном, ограниченном месте", false);
 
-            objQuestion1.Picture = "path";
+            //objQuestion1.Picture = "path";
 
-            //2
-            objQuestion2.Question = "Какое изображение является видом спереди?";
-            //Variants
-            objQuestion2.dicAnswers.Add("1", true);
-            objQuestion2.dicAnswers.Add("2", false);
-            objQuestion2.dicAnswers.Add("3", false);
-            objQuestion2.dicAnswers.Add("4", false);
-            objQuestion2.dicAnswers.Add("5", false);
+            ////2
+            //objQuestion2.Question = "Какое изображение является видом спереди?";
+            ////Variants
+            //objQuestion2.dicAnswers.Add("1", true);
+            //objQuestion2.dicAnswers.Add("2", false);
+            //objQuestion2.dicAnswers.Add("3", false);
+            //objQuestion2.dicAnswers.Add("4", false);
+            //objQuestion2.dicAnswers.Add("5", false);
 
-            objQuestion2.Picture = "path";
+            //objQuestion2.Picture = "path";
 
-            //3
-            objQuestion3.Question = "Как называется изображение 3?";
-            //Variants
-            objQuestion3.dicAnswers.Add("Главный вид", false);
-            objQuestion3.dicAnswers.Add("Вид сверху", true);
-            objQuestion3.dicAnswers.Add("Вид слева", false);
-            objQuestion3.dicAnswers.Add("Местный вид", false);
-            objQuestion3.dicAnswers.Add("Сечение", false);
+            ////3
+            //objQuestion3.Question = "Как называется изображение 3?";
+            ////Variants
+            //objQuestion3.dicAnswers.Add("Главный вид", false);
+            //objQuestion3.dicAnswers.Add("Вид сверху", true);
+            //objQuestion3.dicAnswers.Add("Вид слева", false);
+            //objQuestion3.dicAnswers.Add("Местный вид", false);
+            //objQuestion3.dicAnswers.Add("Сечение", false);
 
-            objQuestion3.Picture = "path";
+            //objQuestion3.Picture = "path";
 
-            //4
-            objQuestion4.Question = "Как называется изображение А-А?";
-            //Variants
-            objQuestion4.dicAnswers.Add("Фронтальный разрез", false);
-            objQuestion4.dicAnswers.Add("Горизонтальный разрез", false);
-            objQuestion4.dicAnswers.Add("Профильный разрез", false);
-            objQuestion4.dicAnswers.Add("Ломаный разрез", false);
-            objQuestion4.dicAnswers.Add("Сложный ступенчатый фронтальный разрез", true);
+            ////4
+            //objQuestion4.Question = "Как называется изображение А-А?";
+            ////Variants
+            //objQuestion4.dicAnswers.Add("Фронтальный разрез", false);
+            //objQuestion4.dicAnswers.Add("Горизонтальный разрез", false);
+            //objQuestion4.dicAnswers.Add("Профильный разрез", false);
+            //objQuestion4.dicAnswers.Add("Ломаный разрез", false);
+            //objQuestion4.dicAnswers.Add("Сложный ступенчатый фронтальный разрез", true);
 
-            objQuestion4.Picture = "path";
+            //objQuestion4.Picture = "path";
 
-            //5
-            objQuestion5.Question = "Как называется изображение А-А?";
-            //Variants
-            objQuestion5.dicAnswers.Add("Наложенное сечение", false);
-            objQuestion5.dicAnswers.Add("Выносной элемент", false);
-            objQuestion5.dicAnswers.Add("Сечение, входящее в состав разреза", false);
-            objQuestion5.dicAnswers.Add("Вынесенное сечение", true);
-            objQuestion5.dicAnswers.Add("Местный разрез", false);
+            ////5
+            //objQuestion5.Question = "Как называется изображение А-А?";
+            ////Variants
+            //objQuestion5.dicAnswers.Add("Наложенное сечение", false);
+            //objQuestion5.dicAnswers.Add("Выносной элемент", false);
+            //objQuestion5.dicAnswers.Add("Сечение, входящее в состав разреза", false);
+            //objQuestion5.dicAnswers.Add("Вынесенное сечение", true);
+            //objQuestion5.dicAnswers.Add("Местный разрез", false);
 
-            objQuestion5.Picture = "path";
+            //objQuestion5.Picture = "path";
 
             //Method, creating list of lables
             //List<???>
@@ -131,12 +132,12 @@ namespace WindowsFormsApplication1
             }
 
             //Method of updating form;
-            groupBox1.Text = objQuestion[questionNum].Question;
-            radioButton1.Text = rad1[questionNum];
-            radioButton2.Text = rad2[questionNum];
-            radioButton3.Text = rad3[questionNum];
-            radioButton4.Text = rad4[questionNum];
-            radioButton5.Text = rad5[questionNum];
+            //groupBox1.Text = objQuestion[questionNum].Question;
+            //radioButton1.Text = rad1[questionNum];
+            //radioButton2.Text = rad2[questionNum];
+            //radioButton3.Text = rad3[questionNum];
+            //radioButton4.Text = rad4[questionNum];
+            //radioButton5.Text = rad5[questionNum];
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -152,12 +153,22 @@ namespace WindowsFormsApplication1
             }
 
             //Method of updating form;
-            groupBox1.Text = objQuestion[questionNum].Question;
-            radioButton1.Text = rad1[questionNum];
-            radioButton2.Text = rad2[questionNum];
-            radioButton3.Text = rad3[questionNum];
-            radioButton4.Text = rad4[questionNum];
-            radioButton5.Text = rad5[questionNum];
+            //groupBox1.Text = objQuestion[questionNum].Question;
+            //radioButton1.Text = rad1[questionNum];
+            //radioButton2.Text = rad2[questionNum];
+            //radioButton3.Text = rad3[questionNum];
+            //radioButton4.Text = rad4[questionNum];
+            //radioButton5.Text = rad5[questionNum];
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

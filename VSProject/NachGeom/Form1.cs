@@ -7,18 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
         int questionNum = 1;
-        classVariant objVariant = new classVariant();
-        classVariant.classQuestion objQuestion1 = new classVariant.classQuestion();
-        classVariant.classQuestion objQuestion2 = new classVariant.classQuestion();
-        classVariant.classQuestion objQuestion3 = new classVariant.classQuestion();
-        classVariant.classQuestion objQuestion4 = new classVariant.classQuestion();
-        classVariant.classQuestion objQuestion5 = new classVariant.classQuestion();
+        Testsheet test;
+        List<Question> questionData = new List<Question>();
+        List<RadioButton> RadioButtonList;
+        List<RadioButton> RadioButtonListCash;
 
+       
+        /*
         int i;
         string[] rad1 = {"1", "Главный вид", "Фронтальный разрез", "Наложенное сечение"};
         string[] rad2 = { "2", "Вид сверху", "Горизонтальный разрез", "Выносной элемент" };
@@ -30,131 +31,201 @@ namespace WindowsFormsApplication1
                              "Как называется изображение А-А?", 
                              "Как называется изображение А-А?" };
         int[] answ = { 3, 1, 2, 5, 4 };
-    
+        */
         
         
         public Form1()
         {
             InitializeComponent();
-
             button1.Enabled = false;
+            dataGridView1.DataSource = MySQLQuieries.GetTest("Test1",1);
 
+            test = new Testsheet("Name234", 1);
 
-            //Initializaton of objVariant
+            //List of Questions
 
-            objVariant.Answers = new Dictionary<int, bool>();
-            for (int i = 1; i <= 5; i++)
-            {
-                objVariant.Answers.Add(i , false);
-            }
-            objVariant.Name = "11";
-            objVariant.SurName = "11";
-            objVariant.Date = "11";
-            objVariant.Mark = 2;
+            for (int i = 0; i < 5; i++)
+		    {
+			    questionData.Add(new Question());
+		    }
+            
 
+            //Метод, заполняющий список данными из базы
 
-            //Initialization of objQuestions
-
+            //Initialization of Questions
 
             //1
-            objQuestion1.Question = "Какое изображение называется видом?";
-            //Variants
-            objQuestion1.dicAnswers.Add("Изображение фигуры, получающейся при мысленном рассечении предмета одной или несколькими плоскостями с показом того, что получается в секущей плоскости", false);
-            objQuestion1.dicAnswers.Add("Изображение обращенной к наблюдателю видимой части поверхности предмета", false);
-            objQuestion1.dicAnswers.Add("Изображение предмета, мысленно рассеченного одной или несколькими плоскостями с показом того, что получается в секущей плоскости и что расположено за ней", true);
-            objQuestion1.dicAnswers.Add("Дополнительное отдельное изображение какой-либо части предмета, требующей графического и других поясненй в отношении формы, размеров и других данных", false);
-            objQuestion1.dicAnswers.Add("Разрез, служащий для выяснения устройства предмета лишь в отдельном, ограниченном месте", false);
 
-            objQuestion1.Picture = "path";
+            questionData[0].questionText = "Какое изображение называется видом?";
+            //Variants
+            questionData[0].answers.Add("Изображение фигуры, получающейся при мысленном рассечении предмета одной или несколькими плоскостями с показом того, что получается в секущей плоскости", false);
+            questionData[0].answers.Add("Изображение обращенной к наблюдателю видимой части поверхности предмета", false);
+            questionData[0].answers.Add("Изображение предмета, мысленно рассеченного одной или несколькими плоскостями с показом того, что получается в секущей плоскости и что расположено за ней", true);
+            questionData[0].answers.Add("Дополнительное отдельное изображение какой-либо части предмета, требующей графического и других поясненй в отношении формы, размеров и других данных", false);
+            questionData[0].answers.Add("Разрез, служащий для выяснения устройства предмета лишь в отдельном, ограниченном месте", false);
+
+            questionData[0].image = "path";
 
             //2
-            objQuestion2.Question = "Какое изображение является видом спереди?";
+            questionData[1].questionText = "Какое изображение является видом спереди?";
             //Variants
-            objQuestion2.dicAnswers.Add("1", true);
-            objQuestion2.dicAnswers.Add("2", false);
-            objQuestion2.dicAnswers.Add("3", false);
-            objQuestion2.dicAnswers.Add("4", false);
-            objQuestion2.dicAnswers.Add("5", false);
+            questionData[1].answers.Add("1", true);
+            questionData[1].answers.Add("2", false);
+            questionData[1].answers.Add("3", false);
+            questionData[1].answers.Add("4", false);
+            questionData[1].answers.Add("5", false);
 
-            objQuestion2.Picture = "path";
+            questionData[1].image = "path";
 
             //3
-            objQuestion3.Question = "Как называется изображение 3?";
+            questionData[2].questionText = "Как называется изображение 3?";
             //Variants
-            objQuestion3.dicAnswers.Add("Главный вид", false);
-            objQuestion3.dicAnswers.Add("Вид сверху", true);
-            objQuestion3.dicAnswers.Add("Вид слева", false);
-            objQuestion3.dicAnswers.Add("Местный вид", false);
-            objQuestion3.dicAnswers.Add("Сечение", false);
+            questionData[2].answers.Add("Главный вид", false);
+            questionData[2].answers.Add("Вид сверху", true);
+            questionData[2].answers.Add("Вид слева", false);
+            questionData[2].answers.Add("Местный вид", false);
+            questionData[2].answers.Add("Сечение", false);
 
-            objQuestion3.Picture = "path";
+            questionData[2].image = "path";
 
             //4
-            objQuestion4.Question = "Как называется изображение А-А?";
+            questionData[3].questionText = "Как называется изображение А-А?";
             //Variants
-            objQuestion4.dicAnswers.Add("Фронтальный разрез", false);
-            objQuestion4.dicAnswers.Add("Горизонтальный разрез", false);
-            objQuestion4.dicAnswers.Add("Профильный разрез", false);
-            objQuestion4.dicAnswers.Add("Ломаный разрез", false);
-            objQuestion4.dicAnswers.Add("Сложный ступенчатый фронтальный разрез", true);
+            questionData[3].answers.Add("Фронтальный разрез", false);
+            questionData[3].answers.Add("Горизонтальный разрез", false);
+            questionData[3].answers.Add("Профильный разрез", false);
+            questionData[3].answers.Add("Ломаный разрез", false);
+            questionData[3].answers.Add("Сложный ступенчатый фронтальный разрез", true);
 
-            objQuestion4.Picture = "path";
+            questionData[3].image = "path";
 
             //5
-            objQuestion5.Question = "Как называется изображение А-А?";
+            questionData[4].questionText = "Как называется изображение А-А?";
             //Variants
-            objQuestion5.dicAnswers.Add("Наложенное сечение", false);
-            objQuestion5.dicAnswers.Add("Выносной элемент", false);
-            objQuestion5.dicAnswers.Add("Сечение, входящее в состав разреза", false);
-            objQuestion5.dicAnswers.Add("Вынесенное сечение", true);
-            objQuestion5.dicAnswers.Add("Местный разрез", false);
+            questionData[4].answers.Add("Наложенное сечение", false);
+            questionData[4].answers.Add("Выносной элемент", false);
+            questionData[4].answers.Add("Сечение, входящее в состав разреза", false);
+            questionData[4].answers.Add("Вынесенное сечение", true);
+            questionData[4].answers.Add("Местный разрез", false);
 
-            objQuestion5.Picture = "path";
+            questionData[4].image = "path";
 
-            //Method, creating list of lables
-            //List<???>
+
+            //Заполнение списка объекта Тест
+
+            test.FillQuestions(questionData);
+
+
+            //Method, creating list of  RadioButtons
+            RadioButtonList = new List<RadioButton>();
+            RadioButtonList.Add(radioButton1);
+            RadioButtonList.Add(radioButton2);
+            RadioButtonList.Add(radioButton3);
+            RadioButtonList.Add(radioButton4);
+            RadioButtonList.Add(radioButton5);
+
+        }
+
+        void AnalisationOfAnswer()
+        {
+            foreach (RadioButton r in RadioButtonList)
+            { 
+                if(r.Checked)
+                    test.UpdateResults(questionNum, test.questions[questionNum].answers[r.Text]);
+            }
+        }
+        
+        
+        void UpdatingForm()
+        {
+
+            int j;
+            RadioButtonListCash = new List<RadioButton>();
+            RadioButtonListCash.Add(radioButton1);
+            RadioButtonListCash.Add(radioButton2);
+            RadioButtonListCash.Add(radioButton3);
+            RadioButtonListCash.Add(radioButton4);
+            RadioButtonListCash.Add(radioButton5);
+            Random rnd = new Random();
+
+
+          
+            groupBox1.Text = test.questions[questionNum - 1].questionText;
+            foreach (KeyValuePair<string, bool> s in test.questions[questionNum - 1].answers)
+            {
+                j = rnd.Next(RadioButtonListCash.Count);
+                label1.Text = j.ToString();
+                RadioButtonListCash[j].Text = s.Key;
+                RadioButtonListCash.RemoveAt(j);
+            }
+
+            label1.Text = "";
+            for (int i = 0; i < 5; i++)
+            {
+                label1.Text = test.results[1].ToString();
+            }
+
+            label1.Text = test.results[1].ToString();
+            
+
+
+            //picture
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (questionNum == 5)
+            AnalisationOfAnswer();
+
+            
+            if (questionNum == 4)
             { 
                 button2.Enabled = false; 
             }
-            else 
-            { 
-                button1.Enabled = true;
-                questionNum++; 
+
+            if (questionNum != 5)
+            {
+                questionNum++;
             }
 
+            button1.Enabled = true;
+
+            //Method of updating results;
+
             //Method of updating form;
-            groupBox1.Text = objQuestion[questionNum].Question;
-            radioButton1.Text = rad1[questionNum];
-            radioButton2.Text = rad2[questionNum];
-            radioButton3.Text = rad3[questionNum];
-            radioButton4.Text = rad4[questionNum];
-            radioButton5.Text = rad5[questionNum];
+
+            UpdatingForm();
+
+           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (questionNum == 1)
+            if (questionNum == 2)
             {
-                button2.Enabled = false;
+                button1.Enabled = false;
             }
-            else
+            
+            if(questionNum != 1)
             {
-                button1.Enabled = true;
-                questionNum--;
+             questionNum--;
             }
 
+            button2.Enabled = true;
+
             //Method of updating form;
-            groupBox1.Text = objQuestion[questionNum].Question;
-            radioButton1.Text = rad1[questionNum];
-            radioButton2.Text = rad2[questionNum];
-            radioButton3.Text = rad3[questionNum];
-            radioButton4.Text = rad4[questionNum];
-            radioButton5.Text = rad5[questionNum];
+
+            UpdatingForm();
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+           // if(sender.checked)
+           // {
+                
+           // }
         }
     }
 }

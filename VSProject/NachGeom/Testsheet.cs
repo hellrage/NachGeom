@@ -48,5 +48,10 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public void UpdateResults(int questionNumber, bool isCorrect)
+        {
+            results[questionNumber] = isCorrect;
+        }
+
     }
 }

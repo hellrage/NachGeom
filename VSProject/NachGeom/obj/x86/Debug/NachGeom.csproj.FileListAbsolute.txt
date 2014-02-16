@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 N:\Каталоги\Git\NachGeom\VSProject\NachGeom\bin\Debug\NachGeom.exe
 N:\Каталоги\Git\NachGeom\VSProject\NachGeom\bin\Debug\NachGeom.pdb
 N:\Каталоги\Git\NachGeom\VSProject\NachGeom\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
@@ -6,3 +7,13 @@ N:\Каталоги\Git\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.cspro
 N:\Каталоги\Git\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.exe
 N:\Каталоги\Git\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.pdb
 N:\Каталоги\Git\NachGeom\VSProject\NachGeom\obj\x86\Debug\WindowsFormsApplication1.Main.resources
+=======
+C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\bin\Debug\NachGeom.exe
+C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\bin\Debug\NachGeom.pdb
+C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.csproj.GenerateResource.Cache
+C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.exe
+C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.pdb
+>>>>>>> origin/Smet-branch
+N:\Каталоги\Git\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.csprojResolveAssemblyReference.cache

@@ -11,7 +11,10 @@ namespace WindowsFormsApplication1
         public Dictionary<string, bool> answers;
         public string questionText;
         public string image;
-
+        public Question()
+        {
+            this.answers = new Dictionary<string, bool>();
+        }
         
     }
 }

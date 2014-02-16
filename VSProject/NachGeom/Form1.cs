@@ -18,6 +18,7 @@ namespace WindowsFormsApplication1
         List<RadioButton> RadioButtonList;
         List<RadioButton> RadioButtonListCash;
 
+
        
         /*
         int i;
@@ -47,6 +48,7 @@ namespace WindowsFormsApplication1
 		    {
 			    questionData.Add(new Question());
 		    }
+
             
 
             //Метод, заполняющий список данными из базы
@@ -122,14 +124,18 @@ namespace WindowsFormsApplication1
             RadioButtonList.Add(radioButton4);
             RadioButtonList.Add(radioButton5);
 
+
+            UpdatingForm();
         }
 
         void AnalisationOfAnswer()
         {
             foreach (RadioButton r in RadioButtonList)
-            { 
-                if(r.Checked)
-                    test.UpdateResults(questionNum, test.questions[questionNum].answers[r.Text]);
+            {
+                if (r.Checked)
+                    test.UpdateResults(questionNum, test.questions[questionNum - 1].answers[r.Text]);
+
+
             }
         }
         
@@ -152,20 +158,17 @@ namespace WindowsFormsApplication1
             foreach (KeyValuePair<string, bool> s in test.questions[questionNum - 1].answers)
             {
                 j = rnd.Next(RadioButtonListCash.Count);
-                label1.Text = j.ToString();
                 RadioButtonListCash[j].Text = s.Key;
                 RadioButtonListCash.RemoveAt(j);
             }
 
             label1.Text = "";
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i <= 5; i++)
             {
-                label1.Text = test.results[1].ToString();
+                label1.Text += test.results[i].ToString();
             }
 
-            label1.Text = test.results[1].ToString();
             
-
 
             //picture
         }
@@ -173,6 +176,8 @@ namespace WindowsFormsApplication1
         private void button2_Click(object sender, EventArgs e)
         {
             AnalisationOfAnswer();
+
+
 
             
             if (questionNum == 4)
@@ -187,9 +192,8 @@ namespace WindowsFormsApplication1
 
             button1.Enabled = true;
 
-            //Method of updating results;
 
-            //Method of updating form;
+
             UpdatingForm();
 
            
@@ -197,6 +201,8 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            AnalisationOfAnswer();
+            
             if (questionNum == 2)
             {
                 button1.Enabled = false;
@@ -209,16 +215,10 @@ namespace WindowsFormsApplication1
 
             button2.Enabled = true;
 
-            //Method of updating form;
+
             UpdatingForm();
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-           // if(sender.checked)
-           // {
-                
-           // }
-        }
+
     }
 }

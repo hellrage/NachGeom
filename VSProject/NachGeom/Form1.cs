@@ -7,18 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
         int questionNum = 1;
-        classVariant objVariant = new classVariant();
-        classVariant.classQuestion objQuestion1 = new classVariant.classQuestion();
-        classVariant.classQuestion objQuestion2 = new classVariant.classQuestion();
-        classVariant.classQuestion objQuestion3 = new classVariant.classQuestion();
-        classVariant.classQuestion objQuestion4 = new classVariant.classQuestion();
-        classVariant.classQuestion objQuestion5 = new classVariant.classQuestion();
-
+        Testsheet test;
+        List<Question> questionData = new List<Question>();
+       
+        /*
         int i;
         string[] rad1 = {"1", "Главный вид", "Фронтальный разрез", "Наложенное сечение"};
         string[] rad2 = { "2", "Вид сверху", "Горизонтальный разрез", "Выносной элемент" };
@@ -30,36 +28,41 @@ namespace WindowsFormsApplication1
                              "Как называется изображение А-А?", 
                              "Как называется изображение А-А?" };
         int[] answ = { 3, 1, 2, 5, 4 };
-    
+        */
         
         
         public Form1()
         {
             InitializeComponent();
-
             button1.Enabled = false;
 
+            test = new Testsheet("Name234", 1);
 
-            //Initializaton of objVariant
+            //List of Questions
 
-            objVariant.Answers = new Dictionary<int, bool>();
-            for (int i = 1; i <= 5; i++)
-            {
-                objVariant.Answers.Add(i , false);
-            }
-            objVariant.Name = "11";
-            objVariant.SurName = "11";
-            objVariant.Date = "11";
-            objVariant.Mark = 2;
+            for (int i = 0; i < 5; i++)
+		    {
+			    questionData.Add(new Question());
+		    }
+            
+
+            //Метод, заполняющий список данными из базы
+
+            //
+
+            //Заполнение списка объекта Тест
+
+            test.FillQuestions(questionData);
+
 
 
             //Initialization of objQuestions
 
 
             //1
-            objQuestion1.Question = "Какое изображение называется видом?";
+            questionData[0].questionText = "Какое изображение называется видом?";
             //Variants
-            objQuestion1.dicAnswers.Add("Изображение фигуры, получающейся при мысленном рассечении предмета одной или несколькими плоскостями с показом того, что получается в секущей плоскости", false);
+            questionData[0].answers.Add("Изображение фигуры, получающейся при мысленном рассечении предмета одной или несколькими плоскостями с показом того, что получается в секущей плоскости", false);
             objQuestion1.dicAnswers.Add("Изображение обращенной к наблюдателю видимой части поверхности предмета", false);
             objQuestion1.dicAnswers.Add("Изображение предмета, мысленно рассеченного одной или несколькими плоскостями с показом того, что получается в секущей плоскости и что расположено за ней", true);
             objQuestion1.dicAnswers.Add("Дополнительное отдельное изображение какой-либо части предмета, требующей графического и других поясненй в отношении формы, размеров и других данных", false);

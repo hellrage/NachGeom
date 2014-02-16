@@ -33,10 +33,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,27 +94,18 @@
             this.radioButton1.Text = "Изображение фигуры, получающейся при мысленном рассечении предмета одной или неск" +
                 "олькими плоскостями с показом того, что получается в секущей плоскости";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // radioButton2
+            // radioButton5
             // 
-            this.radioButton2.Location = new System.Drawing.Point(27, 198);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(369, 57);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Дополнительное отдельное изображение какой-либо части предмета, требующей графиче" +
-                "ского и других поясненй в отношении формы, размеров и других данных";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.Location = new System.Drawing.Point(27, 90);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(369, 42);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Изображение обращенной к наблюдателю видимой части поверхности предмета";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton5.Location = new System.Drawing.Point(27, 138);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(369, 54);
+            this.radioButton5.TabIndex = 4;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Изображение предмета, мысленно рассеченного одной или несколькими плоскостями с п" +
+                "оказом того, что получается в секущей плоскости и что расположено за ней";
+            this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // radioButton4
             // 
@@ -127,16 +118,26 @@
                 " месте";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // radioButton3
             // 
-            this.radioButton5.Location = new System.Drawing.Point(27, 138);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(369, 54);
-            this.radioButton5.TabIndex = 4;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Изображение предмета, мысленно рассеченного одной или несколькими плоскостями с п" +
-                "оказом того, что получается в секущей плоскости и что расположено за ней";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton3.Location = new System.Drawing.Point(27, 90);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(369, 42);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Изображение обращенной к наблюдателю видимой части поверхности предмета";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.Location = new System.Drawing.Point(27, 198);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(369, 57);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Дополнительное отдельное изображение какой-либо части предмета, требующей графиче" +
+                "ского и других поясненй в отношении формы, размеров и других данных";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

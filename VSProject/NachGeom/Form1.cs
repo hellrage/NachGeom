@@ -16,6 +16,8 @@ namespace WindowsFormsApplication1
         Testsheet test;
         List<Question> questionData = new List<Question>();
         List<RadioButton> RadioButtonList;
+        List<RadioButton> RadioButtonListCash;
+
        
         /*
         int i;
@@ -122,22 +124,57 @@ namespace WindowsFormsApplication1
 
         }
 
-
+        void AnalisationOfAnswer()
+        {
+            foreach (RadioButton r in RadioButtonList)
+            { 
+                if(r.Checked)
+                    test.UpdateResults(questionNum, test.questions[questionNum].answers[r.Text]);
+            }
+        }
+        
+        
         void UpdatingForm()
         {
-            label1.Text = questionNum.ToString();
+
+            int j;
+            RadioButtonListCash = new List<RadioButton>();
+            RadioButtonListCash.Add(radioButton1);
+            RadioButtonListCash.Add(radioButton2);
+            RadioButtonListCash.Add(radioButton3);
+            RadioButtonListCash.Add(radioButton4);
+            RadioButtonListCash.Add(radioButton5);
+            Random rnd = new Random();
+
+
+          
             groupBox1.Text = test.questions[questionNum - 1].questionText;
-            int i = 0;
             foreach (KeyValuePair<string, bool> s in test.questions[questionNum - 1].answers)
             {
-                RadioButtonList[i].Text = s.Key;
-                i++;
+                j = rnd.Next(RadioButtonListCash.Count);
+                label1.Text = j.ToString();
+                RadioButtonListCash[j].Text = s.Key;
+                RadioButtonListCash.RemoveAt(j);
             }
+
+            label1.Text = "";
+            for (int i = 0; i < 5; i++)
+            {
+                label1.Text = test.results[1].ToString();
+            }
+
+            label1.Text = test.results[1].ToString();
+            
+
+
             //picture
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            AnalisationOfAnswer();
+
+            
             if (questionNum == 4)
             { 
                 button2.Enabled = false; 
@@ -151,7 +188,6 @@ namespace WindowsFormsApplication1
             button1.Enabled = true;
 
             //Method of updating results;
-
 
             //Method of updating form;
             UpdatingForm();

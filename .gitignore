@@ -2,3 +2,10 @@
 NachGeom/bin/*
 NachGeom/obj/*
 NachGeom/VSProject/NachGeom.suo
+VSProject/NachGeom.suo
+VSProject/NachGeom/Program.cs
+VSProject/NachGeom/bin/Debug/NachGeom.exe
+VSProject/NachGeom/bin/Debug/NachGeom.pdb
+VSProject/NachGeom/obj/x86/Debug/NachGeom.csproj.GenerateResource.Cache
+VSProject/NachGeom/obj/x86/Debug/NachGeom.exe
+VSProject/NachGeom/obj/x86/Debug/NachGeom.pdb

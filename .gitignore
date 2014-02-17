@@ -1,3 +1,4 @@
 *.cache
 NachGeom/bin/*
 NachGeom/obj/*
+NachGeom/VSProject/NachGeom.suo

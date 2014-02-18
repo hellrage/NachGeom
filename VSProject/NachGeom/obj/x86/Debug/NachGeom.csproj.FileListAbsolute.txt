@@ -1,7 +1,8 @@
 C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\bin\Debug\NachGeom.exe
 C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\bin\Debug\NachGeom.pdb
-C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
 C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.csproj.GenerateResource.Cache
 C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.exe
 C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.pdb
+C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\WindowsFormsApplication1.Form2.resources
+C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\WindowsFormsApplication1.Form3.resources

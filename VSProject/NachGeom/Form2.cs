@@ -13,12 +13,16 @@ namespace WindowsFormsApplication1
     public partial class Form2 : Form
     {
         int questionNum = 1;
-        Testsheet test;
+        int questionNumInCheck = 1;
+        Testsheet currentTest;
+        string studentName;
+        DateTime testStart = DateTime.Now;
+
         List<Question> questionData = new List<Question>();
         List<RadioButton> RadioButtonList;
         List<RadioButton> RadioButtonListCash;
-
-       
+        
+               
         /*
         int i;
         string[] rad1 = {"1", "Главный вид", "Фронтальный разрез", "Наложенное сечение"};
@@ -33,34 +37,38 @@ namespace WindowsFormsApplication1
         int[] answ = { 3, 1, 2, 5, 4 };
         */
         
-        
         public Form2()
         {
             InitializeComponent();
-            button1.Enabled = false;
-            dataGridView1.DataSource = MySQLQuieries.GetTest("Test1",1);
+            buttonPrev.Enabled = false;
+            currentTest = new Testsheet("Name234", 1);
+            studentName = "Vasya";
 
-            test = new Testsheet("Name234", 1);
+
+            //onceMaingForm
+            toolStripStatusStudentName.Text = "Имя студента: " + studentName;
+            toolStripStatusVariant.Text = "Вариант: " + currentTest.Variant.ToString();
+            toolStripStatusTime.Text = "Время выполнения: " + (DateTime.Now - testStart).ToString("hh':'mm':'ss");
+            this.Text = "Тест: " + currentTest.Name;
+            
+            
+            
 
             //List of Questions
 
             for (int i = 0; i < 5; i++)
-		    {
 			    questionData.Add(new Question());
-		    }
-            
 
             //Метод, заполняющий список данными из базы
 
             //Initialization of Questions
 
             //1
-
             questionData[0].questionText = "Какое изображение называется видом?";
             //Variants
             questionData[0].answers.Add("Изображение фигуры, получающейся при мысленном рассечении предмета одной или несколькими плоскостями с показом того, что получается в секущей плоскости", false);
-            questionData[0].answers.Add("Изображение обращенной к наблюдателю видимой части поверхности предмета", false);
-            questionData[0].answers.Add("Изображение предмета, мысленно рассеченного одной или несколькими плоскостями с показом того, что получается в секущей плоскости и что расположено за ней", true);
+            questionData[0].answers.Add("Изображение обращенной к наблюдателю видимой части поверхности предмета", true);
+            questionData[0].answers.Add("Изображение предмета, мысленно рассеченного одной или несколькими плоскостями с показом того, что получается в секущей плоскости и что расположено за ней", false);
             questionData[0].answers.Add("Дополнительное отдельное изображение какой-либо части предмета, требующей графического и других поясненй в отношении формы, размеров и других данных", false);
             questionData[0].answers.Add("Разрез, служащий для выяснения устройства предмета лишь в отдельном, ограниченном месте", false);
 
@@ -113,8 +121,7 @@ namespace WindowsFormsApplication1
 
             //Заполнение списка объекта Тест
 
-            test.FillQuestions(questionData);
-
+            currentTest.FillQuestions(questionData);
 
             //Method, creating list of  RadioButtons
             RadioButtonList = new List<RadioButton>();
@@ -123,109 +130,203 @@ namespace WindowsFormsApplication1
             RadioButtonList.Add(radioButton3);
             RadioButtonList.Add(radioButton4);
             RadioButtonList.Add(radioButton5);
-
+            
+            UpdatingForm();
         }
+
+        void Debugging()
+        {
+            //debugging
+            label1.Text = "";
+            for (int i = 1; i <= 5; i++)
+                label1.Text += currentTest.results[i].ToString();
+            label2.Text = "";
+            for (int i = 1; i <= 5; i++)
+                label2.Text += currentTest.chosenAnswers[i].ToString();
+            label3.Text = questionNum.ToString();
+        }
+
 
         void AnalisationOfAnswer()
         {
+            int i = 1;
             foreach (RadioButton r in RadioButtonList)
-            { 
-                if(r.Checked)
-                    test.UpdateResults(questionNum, test.questions[questionNum].answers[r.Text]);
+            {
+                
+                if (r.Checked)
+                {
+                    label4.Text = r.Text;
+                    currentTest.UpdateResults(questionNum, currentTest.questions[questionNum - 1].answers[r.Text]);
+                    currentTest.chosenAnswers[questionNum] = i;
+                }
+                i++;
             }
         }
-        
-        
+
+        void RadioButtonChecking()
+        {
+            AnalisationOfAnswer();
+            
+            //Updating ProgressBar
+            int progressBarValue = 0;
+            for (int i = 1; i < 6; i++)
+            {
+                if (currentTest.chosenAnswers[i] != 0)
+                    progressBarValue++;
+            }
+            toolStripProgressBar1.Value = progressBarValue;
+
+            //Updating buttonUnanswered
+            bool allAnswered = true;
+            for (int i = 1; i < 6; i++)
+                if (currentTest.chosenAnswers[i] == 0)
+                    allAnswered = false;
+            if (allAnswered)
+                buttonUnanswered.Enabled = false;
+
+            Debugging();
+        }
+
+
         void UpdatingForm()
         {
-
-            int j;
+            //creating cash list
             RadioButtonListCash = new List<RadioButton>();
             RadioButtonListCash.Add(radioButton1);
             RadioButtonListCash.Add(radioButton2);
             RadioButtonListCash.Add(radioButton3);
             RadioButtonListCash.Add(radioButton4);
             RadioButtonListCash.Add(radioButton5);
-            Random rnd = new Random();
 
+            //Disabling and Enabling buttons
+            if (questionNum == 1)
+                buttonPrev.Enabled = false;
+            else
+                buttonPrev.Enabled = true;
+            if (questionNum == 5)
+                buttonNext.Enabled = false; 
+            else
+                buttonNext.Enabled = true; 
 
-          
-            groupBox1.Text = test.questions[questionNum - 1].questionText;
-            foreach (KeyValuePair<string, bool> s in test.questions[questionNum - 1].answers)
+            //Cheking answers as was or placing "1"
+            if (currentTest.chosenAnswers[questionNum] == 0)
             {
-                j = rnd.Next(RadioButtonListCash.Count);
-                label1.Text = j.ToString();
-                RadioButtonListCash[j].Text = s.Key;
-                RadioButtonListCash.RemoveAt(j);
+                foreach (RadioButton r in RadioButtonList)
+                    r.Checked = false;
             }
+            else
+                RadioButtonList[currentTest.chosenAnswers[questionNum] - 1].Checked = true;
 
-            label1.Text = "";
-            for (int i = 0; i < 5; i++)
-            {
-                label1.Text = test.results[1].ToString();
-            }
-
-            label1.Text = test.results[1].ToString();
+            //Filling with text
+            labelQuestionNum.Text = "Задание номер " + questionNum;
+            groupBox1.Text = currentTest.questions[questionNum - 1].questionText;
             
-
-
+            int j = 0;
+            foreach (KeyValuePair<string, bool> s in currentTest.questions[questionNum - 1].answers)
+            {
+                RadioButtonListCash[j].Text = s.Key;
+                j++;
+            }
             //picture
+            string path;
+            path = "./Images/" + questionNum + ".jpg";
+            pictureBox1.Image = Image.FromFile(path);
+
+
+
+            questionNumInCheck = questionNum;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AnalisationOfAnswer();
-
-            
-            if (questionNum == 4)
-            { 
-                button2.Enabled = false; 
-            }
-
             if (questionNum != 5)
-            {
                 questionNum++;
-            }
 
-            button1.Enabled = true;
-
-            //Method of updating results;
-
-            //Method of updating form;
-
+            buttonPrev.Enabled = true;
+                        
             UpdatingForm();
-
-           
-
-        }
+            
+         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (questionNum == 2)
-            {
-                button1.Enabled = false;
-            }
-            
             if(questionNum != 1)
-            {
-             questionNum--;
-            }
-
-            button2.Enabled = true;
-
-            //Method of updating form;
-
+                questionNum--;
+            
+            buttonNext.Enabled = true;
+            
             UpdatingForm();
+            
+        }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            form3.Show();
+        }
+
+        private void buttonUnanswered_Click(object sender, EventArgs e)
+        {
+            if(currentTest.chosenAnswers[questionNum] != 0 )
+                for (int i = 1; i < 6; i++)
+                    if (currentTest.chosenAnswers[i] == 0)
+                    {
+                        questionNum = i;
+                        UpdatingForm();
+                        break;
+                    }
+
+            
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusTime.Text = "Время выполнения: " + (DateTime.Now - testStart).ToString("hh':'mm':'ss");
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            if (questionNumInCheck == questionNum)
+                RadioButtonChecking();
 
-           // if(sender.checked)
-           // {
-                
-           // }
         }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (questionNumInCheck == questionNum)
+                RadioButtonChecking();
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (questionNumInCheck == questionNum)
+                RadioButtonChecking();
+
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (questionNumInCheck == questionNum)
+                RadioButtonChecking();
+
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (questionNumInCheck == questionNum)
+                RadioButtonChecking();
+
+        }
+
+        
+
+ 
+
+
+
+
     }
 }

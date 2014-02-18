@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
 
         public int Variant;
         public Dictionary<int, bool> results;
-
+        public Dictionary<int, int> chosenAnswers;
 
         //Конструктор
         public Testsheet(string Name, int Variant)
@@ -37,6 +37,9 @@ namespace WindowsFormsApplication1
                 this.results.Add(i, false);
             }
 
+            this.chosenAnswers = new Dictionary<int, int>();
+            for (int i = 1; i <= 5; i++)
+                this.chosenAnswers.Add(i, 0);
         }
 
         //Заполнение вопросов объекта типа Testsheet

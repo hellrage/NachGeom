@@ -22,7 +22,7 @@
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="14" fontStyle="plain" hasLineColor="false" height="21.1513671875" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="65.4755859375" x="143.76220703125" y="4.0">Testsheet</y:NodeLabel>
           <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="14" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="158.3623046875" modelName="custom" textColor="#000000" visible="true" width="350.267578125" x="2.0" y="33.1513671875">List&lt;Question&gt; questions
-string Name
+string testName
 int Variant
 Dictionary&lt;int,bool&gt; results
 Dictionary&lt;int, int&gt; chosenAnswers;
@@ -93,13 +93,60 @@ DataTable GetStudentResults( args? )
     <node id="n3">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
-          <y:Geometry height="182.79192938209331" width="313.0000000000001" x="95.0" y="-82.06368221941995"/>
+          <y:Geometry height="302.64817150063055" width="313.0000000000001" x="95.0" y="-155.5239596469105"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="14" fontStyle="plain" hasLineColor="false" height="21.1513671875" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="34.3447265625" x="139.32763671875006" y="4.0">Main</y:NodeLabel>
-          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="14" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="106.908203125" modelName="custom" textColor="#000000" visible="true" width="172.84765625" x="2.0" y="33.1513671875">string studentName
+          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="14" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="141.2109375" modelName="custom" textColor="#000000" visible="true" width="159.33984375" x="2.0" y="33.1513671875">string studentName
+string studentSurname
+string studentFname
+string Faculty
+string Group
 DateTime testStart
 Testsheet currentTest
+===================
+<y:LabelModel>
+              <y:ErdAttributesNodeLabelModel/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:ErdAttributesNodeLabelModelParameter/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="true"/>
+          </y:StyleProperties>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n4">
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
+          <y:Geometry height="182.79192938209331" width="313.0000000000001" x="438.0000000000001" y="-82.06368221941995"/>
+          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="14" fontStyle="plain" hasLineColor="false" height="21.1513671875" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="44.4482421875" x="134.2758789062501" y="4.0">Form1</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="14" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="2.0" y="33.1513671875">
+            <y:LabelModel>
+              <y:ErdAttributesNodeLabelModel/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:ErdAttributesNodeLabelModelParameter/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="true"/>
+          </y:StyleProperties>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n5">
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
+          <y:Geometry height="182.79192938209331" width="313.0000000000001" x="781.0000000000002" y="-82.06368221941995"/>
+          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="14" fontStyle="plain" hasLineColor="false" height="21.1513671875" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="44.4482421875" x="134.27587890625" y="4.0">Form2</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="14" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="72.60546875" modelName="custom" textColor="#000000" visible="true" width="172.84765625" x="2.0" y="33.1513671875">int questionNum
 ===================
 void AnalisationOfAnswer()
 void UpdatingForm()<y:LabelModel>

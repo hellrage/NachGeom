@@ -6,3 +6,4 @@ C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeo
 C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.pdb
 C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\WindowsFormsApplication1.Form2.resources
 C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\WindowsFormsApplication1.Form3.resources
+C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.csprojResolveAssemblyReference.cache

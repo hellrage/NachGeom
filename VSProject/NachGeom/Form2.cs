@@ -13,10 +13,7 @@ namespace WindowsFormsApplication1
     public partial class Form2 : Form
     {
         int questionNum = 1;
-        int questionNumInCheck = 1;
-        Testsheet currentTest;
-        string studentName;
-        DateTime testStart = DateTime.Now;
+        
 
         List<Question> questionData = new List<Question>();
         List<RadioButton> RadioButtonList;
@@ -41,17 +38,20 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             buttonPrev.Enabled = false;
-            currentTest = new Testsheet("Name234", 1);
-            studentName = "Vasya";
+            pMain.currentTest = new Testsheet("Name234", 1);
+            pMain.studentName = "Vasya";
+            pMain.studentSurname = "Petrov";
+            pMain.studentFname = "Petrovich";
+            pMain.Faculty = "IU";
+            pMain.Group = "IU4-23";
+            pMain.testStart = DateTime.Now;
 
 
             //onceMaingForm
-            toolStripStatusStudentName.Text = "Имя студента: " + studentName;
-            toolStripStatusVariant.Text = "Вариант: " + currentTest.Variant.ToString();
-            toolStripStatusTime.Text = "Время выполнения: " + (DateTime.Now - testStart).ToString("hh':'mm':'ss");
-            this.Text = "Тест: " + currentTest.Name;
-            
-            
+            toolStripStatusStudentName.Text = "Имя студента: " + pMain.studentName;
+            toolStripStatusVariant.Text = "Вариант: " + pMain.currentTest.Variant.ToString();
+            toolStripStatusTime.Text = "Время выполнения: " + (DateTime.Now - pMain.testStart).ToString("hh':'mm':'ss");
+            this.Text = "Тест: " + pMain.currentTest.testName;
             
 
             //List of Questions
@@ -121,7 +121,7 @@ namespace WindowsFormsApplication1
 
             //Заполнение списка объекта Тест
 
-            currentTest.FillQuestions(questionData);
+            pMain.currentTest.FillQuestions(questionData);
 
             //Method, creating list of  RadioButtons
             RadioButtonList = new List<RadioButton>();
@@ -132,6 +132,7 @@ namespace WindowsFormsApplication1
             RadioButtonList.Add(radioButton5);
             
             UpdatingForm();
+            Debugging();
         }
 
         void Debugging()
@@ -139,10 +140,10 @@ namespace WindowsFormsApplication1
             //debugging
             label1.Text = "";
             for (int i = 1; i <= 5; i++)
-                label1.Text += currentTest.results[i].ToString();
+                label1.Text += pMain.currentTest.results[i].ToString();
             label2.Text = "";
             for (int i = 1; i <= 5; i++)
-                label2.Text += currentTest.chosenAnswers[i].ToString();
+                label2.Text += pMain.currentTest.chosenAnswers[i].ToString();
             label3.Text = questionNum.ToString();
         }
 
@@ -155,9 +156,8 @@ namespace WindowsFormsApplication1
                 
                 if (r.Checked)
                 {
-                    label4.Text = r.Text;
-                    currentTest.UpdateResults(questionNum, currentTest.questions[questionNum - 1].answers[r.Text]);
-                    currentTest.chosenAnswers[questionNum] = i;
+                    pMain.currentTest.UpdateResults(questionNum, pMain.currentTest.questions[questionNum - 1].answers[r.Text]);
+                    pMain.currentTest.chosenAnswers[questionNum] = i;
                 }
                 i++;
             }
@@ -171,7 +171,7 @@ namespace WindowsFormsApplication1
             int progressBarValue = 0;
             for (int i = 1; i < 6; i++)
             {
-                if (currentTest.chosenAnswers[i] != 0)
+                if (pMain.currentTest.chosenAnswers[i] != 0)
                     progressBarValue++;
             }
             toolStripProgressBar1.Value = progressBarValue;
@@ -179,7 +179,7 @@ namespace WindowsFormsApplication1
             //Updating buttonUnanswered
             bool allAnswered = true;
             for (int i = 1; i < 6; i++)
-                if (currentTest.chosenAnswers[i] == 0)
+                if (pMain.currentTest.chosenAnswers[i] == 0)
                     allAnswered = false;
             if (allAnswered)
                 buttonUnanswered.Enabled = false;
@@ -208,33 +208,33 @@ namespace WindowsFormsApplication1
             else
                 buttonNext.Enabled = true; 
 
+           
+
+            //Filling with text
+            labelQuestionNum.Text = "Задание номер " + questionNum;
+            groupBox1.Text = pMain.currentTest.questions[questionNum - 1].questionText;
+            
+            int j = 0;
+            foreach (KeyValuePair<string, bool> s in pMain.currentTest.questions[questionNum - 1].answers)
+            {
+                RadioButtonListCash[j].Text = s.Key;
+                j++;
+            }
+
+
             //Cheking answers as was or placing "1"
-            if (currentTest.chosenAnswers[questionNum] == 0)
+            if (pMain.currentTest.chosenAnswers[questionNum] == 0)
             {
                 foreach (RadioButton r in RadioButtonList)
                     r.Checked = false;
             }
             else
-                RadioButtonList[currentTest.chosenAnswers[questionNum] - 1].Checked = true;
+                RadioButtonList[pMain.currentTest.chosenAnswers[questionNum] - 1].Checked = true;
 
-            //Filling with text
-            labelQuestionNum.Text = "Задание номер " + questionNum;
-            groupBox1.Text = currentTest.questions[questionNum - 1].questionText;
-            
-            int j = 0;
-            foreach (KeyValuePair<string, bool> s in currentTest.questions[questionNum - 1].answers)
-            {
-                RadioButtonListCash[j].Text = s.Key;
-                j++;
-            }
             //picture
             string path;
             path = "./Images/" + questionNum + ".jpg";
             pictureBox1.Image = Image.FromFile(path);
-
-
-
-            questionNumInCheck = questionNum;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -267,9 +267,9 @@ namespace WindowsFormsApplication1
 
         private void buttonUnanswered_Click(object sender, EventArgs e)
         {
-            if(currentTest.chosenAnswers[questionNum] != 0 )
+            if(pMain.currentTest.chosenAnswers[questionNum] != 0 )
                 for (int i = 1; i < 6; i++)
-                    if (currentTest.chosenAnswers[i] == 0)
+                    if (pMain.currentTest.chosenAnswers[i] == 0)
                     {
                         questionNum = i;
                         UpdatingForm();
@@ -282,33 +282,30 @@ namespace WindowsFormsApplication1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            toolStripStatusTime.Text = "Время выполнения: " + (DateTime.Now - testStart).ToString("hh':'mm':'ss");
+            toolStripStatusTime.Text = "Время выполнения: " + (DateTime.Now - pMain.testStart).ToString("hh':'mm':'ss");
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (questionNumInCheck == questionNum)
                 RadioButtonChecking();
 
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            if (questionNumInCheck == questionNum)
                 RadioButtonChecking();
 
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            if (questionNumInCheck == questionNum)
                 RadioButtonChecking();
 
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            if (questionNumInCheck == questionNum)
+
                 RadioButtonChecking();
 
         }
@@ -316,7 +313,6 @@ namespace WindowsFormsApplication1
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (questionNumInCheck == questionNum)
                 RadioButtonChecking();
 
         }

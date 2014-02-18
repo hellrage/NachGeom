@@ -9,16 +9,7 @@ namespace WindowsFormsApplication1
     public class Testsheet
     {
         public List<Question> questions;
-
-        
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            private set { name = value; }
-        }
-
-
+        public string testName;
         public int Variant;
         public Dictionary<int, bool> results;
         public Dictionary<int, int> chosenAnswers;
@@ -26,11 +17,9 @@ namespace WindowsFormsApplication1
         //Конструктор
         public Testsheet(string Name, int Variant)
         {
-            this.name = Name;
+            this.testName = Name;
             this.Variant = Variant;
-
             this.questions = new List<Question>();
-
             this.results = new Dictionary<int, bool>();
             for (int i = 1; i <= 5; i++)
                 this.results.Add(i, false);

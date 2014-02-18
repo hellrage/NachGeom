@@ -17,3 +17,4 @@ C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeo
 C:\Users\User\Documents\GitHub\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.pdb
 >>>>>>> origin/Smet-branch
 N:\Каталоги\Git\NachGeom\VSProject\NachGeom\obj\x86\Debug\NachGeom.csprojResolveAssemblyReference.cache
+N:\Каталоги\Git\NachGeom\VSProject\NachGeom\obj\x86\Debug\WindowsFormsApplication1.Form2.resources

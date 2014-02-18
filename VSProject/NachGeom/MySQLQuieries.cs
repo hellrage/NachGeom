@@ -50,9 +50,10 @@ namespace WindowsFormsApplication1
 
             return dt;
         }
+
         public static DataTable GetTestList()
         {
-            return ExecQuery("SELECT * FROM TestList");
+            return ExecQuery("SELECT * FROM TestList ORDER BY 'test_name'");
         }
 
         public static DataTable GetTest(string testName, int variant)
